@@ -18,20 +18,48 @@ var choiceBtn1= document.getElementById("choice-1");
 var choiceBtn2= document.getElementById("choice-2");
 var choiceBtn3= document.getElementById("choice-3");
 var choiceBtn4= document.getElementById("choice-4");
+var answwerList = document.getElementById("listOptions")
+var end = document.getElementById("endGame")
+var results = document.getElementById("results");
+var initials = document.getElementById("initialsId")
+var user = document.getElementById("finish")
+var timer = document.getElementById("timer")
 var currentMQuestion = 0;
+var userWin = 0
+var userLose = 0
+var timerId
+var counter = questions.length * 5
+// var saveUserdetails=JSON.parse(localStorage.getItem("showResults"))||[]
+// $("#initialsId").on("click", function(event){
+//     event.preventDefault();
+//     console.log("dope")
+// })
 
 startBtn.onclick = startGame;
-choiceBtn1.onclick = optionOne
+choiceBtn1.onclick = checkAnswer
+choiceBtn2.onclick = checkAnswer
+choiceBtn3.onclick = checkAnswer
+choiceBtn4.onclick = checkAnswer
+initials.onclick = saveUserdetails
 answersDiv.style.display = "none";
 questionsDiv.style.display = "none";
+end.style.display = "none";
 
+function displayClock(){
+    timer.textContent = counter
+    counter--
+    if (counter<=0){
+        displayResults()
+    }
 
+}
 
 
 function startGame(){
     startBtn.style.display = "none";
     answersDiv.style.display = "block";
     questionsDiv.style.display   = "block";
+    timerId = setInterval(displayClock,1000)
     displayQuestion()
 }
 function displayQuestion(){
@@ -50,7 +78,39 @@ function displayQuestion(){
      choiceBtn4.setAttribute("data-answer",questions[currentMQuestion].cor)
 
 }
-function optionOne(){
+function checkAnswer(){
     console.log("button was click",this.getAttribute("data-value"))
     console.log("button was click",this.getAttribute("data-answer"))
+    var userchoice = this.getAttribute("data-value")
+    var rightAnswer = this.getAttribute("data-answer")
+    if (userchoice === rightAnswer){
+        userWin ++
+        answwerList.textContent = "correct"
+    }
+    else{
+        userLose++
+        counter = counter - 5
+        answwerList.textContent = "INCORRECT. The Right answer is  : "+rightAnswer
+    }
+    if(currentMQuestion<questions.length - 1){
+        currentMQuestion++
+        displayQuestion()
+    }
+    else{
+        displayResults()
+    }
 }
+function displayResults(){
+    clearInterval(timerId)
+    console.log(userWin,userLose)
+    answersDiv.style.display = "none";
+    questionsDiv.style.display = "none";
+    end.style.display = "block";
+    results.textContent = `Wins : ${userWin} Loss: ${userLose}`
+}
+// function getlocalstorage(){
+//     console.log("button was click", this.getAttribute("initials"))
+// }
+// function saveUserdetails(){
+//     console.log.setAttribute("")
+// }
