@@ -10,7 +10,7 @@
    
     <div class="jumbotron">
         <h1 class="display-3">Code Quiz</h1>
-        <p class="lead">Last Person to Play: <span id="lastPlay"></span></p>  
+        <p class="lead">Previous User Initials: <span id="lastPlay"></span></p>  
         <p class="lead">Score: <span id="lastScore"></span></p>
         <p id="header" class="lead">
             Test your knowledge on American History.deducts 10 seconds from your time!
@@ -22,9 +22,10 @@
         <div id="form"></div>
     </div>
  <div id="gameContainer">
+    <h4 id="listOptions"></h4>
     <div id="questionsDiv" class="lead"></div>
     <div id="answersDiv" class="list-unstyled">
-        <p id="listOptions"></p>
+        
         <button id="choice-1" class="options" data-value="" data-answer=""></button>
         <button id="choice-2" class="options" data-value="" data-answer=""></button>
         <button id="choice-3" class="options" data-value="" data-answer=""></button>
@@ -34,8 +35,8 @@
  <div id="endGame">
      <h4 id="results"></h4>
      <h3>Enter Initials</h3>
-     <input id="finish" type="text">
-     <button id="initialsId">Save intials</button>
+     <input id="userinitials" type="text" />
+     <button id="saveuser">Save intials</button>
  </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

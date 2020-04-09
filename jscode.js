@@ -19,31 +19,27 @@ var choiceBtn2= document.getElementById("choice-2");
 var choiceBtn3= document.getElementById("choice-3");
 var choiceBtn4= document.getElementById("choice-4");
 var answwerList = document.getElementById("listOptions")
-var end = document.getElementById("endGame")
+var enddiv = document.getElementById("endGame")
 var results = document.getElementById("results");
-var initials = document.getElementById("initialsId")
-var user = document.getElementById("finish")
+var uinitials = document.getElementById("saveuser")
+var userinitials = document.getElementById("userinitials")
 var timer = document.getElementById("timer")
 var currentMQuestion = 0;
 var userWin = 0
 var userLose = 0
 var timerId
 var counter = questions.length * 5
-// var saveUserdetails=JSON.parse(localStorage.getItem("showResults"))||[]
-// $("#initialsId").on("click", function(event){
-//     event.preventDefault();
-//     console.log("dope")
-// })
+
 
 startBtn.onclick = startGame;
 choiceBtn1.onclick = checkAnswer
 choiceBtn2.onclick = checkAnswer
 choiceBtn3.onclick = checkAnswer
 choiceBtn4.onclick = checkAnswer
-initials.onclick = saveUserdetails
+uinitials.onclick = saveUserdetails
 answersDiv.style.display = "none";
 questionsDiv.style.display = "none";
-end.style.display = "none";
+enddiv.style.display = "none";
 
 function displayClock(){
     timer.textContent = counter
@@ -54,6 +50,14 @@ function displayClock(){
 
 }
 
+
+
+// $("#saveuser").on("click",function(){
+//     console.log("InSave userdetails",$("#finishit").val())
+//     localStorage.setItem("username",$("#finishit").val())
+//     localStorage.setItem("score",userWin)
+//     console.log(localStorage.getItem("username"))
+// });
 
 function startGame(){
     startBtn.style.display = "none";
@@ -85,12 +89,12 @@ function checkAnswer(){
     var rightAnswer = this.getAttribute("data-answer")
     if (userchoice === rightAnswer){
         userWin ++
-        answwerList.textContent = "correct"
+        answwerList.textContent = "Correct"
     }
     else{
         userLose++
         counter = counter - 5
-        answwerList.textContent = "INCORRECT. The Right answer is  : "+rightAnswer
+        answwerList.textContent = "Previous Question was incorrect  : "+rightAnswer
     }
     if(currentMQuestion<questions.length - 1){
         currentMQuestion++
@@ -102,15 +106,33 @@ function checkAnswer(){
 }
 function displayResults(){
     clearInterval(timerId)
+    userLose = questions.length - userWin;
     console.log(userWin,userLose)
     answersDiv.style.display = "none";
     questionsDiv.style.display = "none";
-    end.style.display = "block";
+    enddiv.style.display = "block";
+    userinitials.style.display ="block";
+    uinitials.style.display ="block";
+    answwerList.textContent = "";
+    uinitials.addEventListener("click", saveUserdetails);
+    
     results.textContent = `Wins : ${userWin} Loss: ${userLose}`
+    console.log("Button",uinitials)
 }
-// function getlocalstorage(){
-//     console.log("button was click", this.getAttribute("initials"))
-// }
-// function saveUserdetails(){
-//     console.log.setAttribute("")
-// }
+
+
+
+function saveUserdetails(){
+    console.log("InSave userdetails",userinitials.textContent)
+    var temp = userinitials.value
+    console.log("Temp",temp)
+    localStorage.setItem("username",temp)
+    localStorage.setItem("score",userWin)
+    console.log(localStorage.getItem("username"))
+}
+
+var username = localStorage.getItem("username")
+var score = localStorage.getItem("score")
+console.log(username,score)
+document.getElementById("lastPlay").textContent = username || "Glad you decided to play now"
+document.getElementById("lastScore").textContent =  score || "Hope you get the MAX Score"
