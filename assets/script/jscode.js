@@ -29,7 +29,8 @@ var userWin = 0
 var userLose = 0
 var timerId
 var counter = questions.length * 5
-
+var username =""
+var score =0
 
 startBtn.onclick = startGame;
 choiceBtn1.onclick = checkAnswer
@@ -126,13 +127,16 @@ function saveUserdetails(){
     console.log("InSave userdetails",userinitials.textContent)
     var temp = userinitials.value
     console.log("Temp",temp)
-    localStorage.setItem("username",temp)
-    localStorage.setItem("score",userWin)
+    if( score < userWin){
+        localStorage.setItem("username",temp)
+        localStorage.setItem("score",userWin)
+    }
+    
     console.log(localStorage.getItem("username"))
 }
 
-var username = localStorage.getItem("username")
-var score = localStorage.getItem("score")
+username = localStorage.getItem("username")
+score = localStorage.getItem("score")
 console.log(username,score)
 document.getElementById("lastPlay").textContent = username || "Glad you decided to play now"
 document.getElementById("lastScore").textContent =  score || "Hope you get the MAX Score"
