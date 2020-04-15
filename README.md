@@ -22,4 +22,4 @@ When user clicks on start quiz, questions are generated and if user is correct, 
 
 
 
-# screenshot of webpage:(C:\Users\kokob\Documents\bootcamp\homework\homework04\assets\images\2020-04-09.png)
+# screenshot of webpage: ![homepeage](./assets/images/2020-04-09.png)
