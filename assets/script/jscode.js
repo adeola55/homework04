@@ -131,7 +131,8 @@ function saveUserdetails(){
         localStorage.setItem("username",temp)
         localStorage.setItem("score",userWin)
     }
-    
+    enddiv.style.display = "none"
+    startBtn.style.display = "block"
     console.log(localStorage.getItem("username"))
 }
 
