@@ -51,15 +51,7 @@ function displayClock(){
 
 }
 
-
-
-// $("#saveuser").on("click",function(){
-//     console.log("InSave userdetails",$("#finishit").val())
-//     localStorage.setItem("username",$("#finishit").val())
-//     localStorage.setItem("score",userWin)
-//     console.log(localStorage.getItem("username"))
-// });
-
+displayHighscore()
 function startGame(){
     startBtn.style.display = "none";
     answersDiv.style.display = "block";
@@ -68,6 +60,7 @@ function startGame(){
     currentMQuestion = 0;
     userWin = 0
     userLose = 0
+    displayHighscore()
     timerId = setInterval(displayClock,1000)
     displayQuestion()
 }
@@ -88,8 +81,8 @@ function displayQuestion(){
 
 }
 function checkAnswer(){
-    console.log("button was click",this.getAttribute("data-value"))
-    console.log("button was click",this.getAttribute("data-answer"))
+    // console.log("button was click",this.getAttribute("data-value"))
+    // console.log("button was click",this.getAttribute("data-answer"))
     var userchoice = this.getAttribute("data-value")
     var rightAnswer = this.getAttribute("data-answer")
     if (userchoice === rightAnswer){
@@ -122,10 +115,8 @@ function displayResults(){
     uinitials.addEventListener("click", saveUserdetails);
     
     results.textContent = `Wins : ${userWin} Loss: ${userLose}`
-    console.log("Button",uinitials)
+    // console.log("Button",uinitials)
 }
-
-
 
 function saveUserdetails(){
     console.log("InSave userdetails",userinitials.textContent)
@@ -137,11 +128,14 @@ function saveUserdetails(){
     }
     enddiv.style.display = "none"
     startBtn.style.display = "block"
-    console.log(localStorage.getItem("username"))
+    displayHighscore()
+    // console.log(localStorage.getItem("username"))
 }
 
+function displayHighscore(){
 username = localStorage.getItem("username")
 score = localStorage.getItem("score")
 console.log(username,score)
 document.getElementById("lastPlay").textContent = username || "Glad you decided to play now"
 document.getElementById("lastScore").textContent =  score || "Hope you get the MAX Score"
+}
