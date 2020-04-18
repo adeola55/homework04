@@ -64,6 +64,10 @@ function startGame(){
     startBtn.style.display = "none";
     answersDiv.style.display = "block";
     questionsDiv.style.display   = "block";
+    counter = questions.length * 5;
+    currentMQuestion = 0;
+    userWin = 0
+    userLose = 0
     timerId = setInterval(displayClock,1000)
     displayQuestion()
 }
